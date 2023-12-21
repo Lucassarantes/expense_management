@@ -5,7 +5,7 @@
 - Backend Language: Python.
 - Backend Framework: Django.
 - Comunication: Rest APIs.
-- Services: AWS.
+- Services: Lambda, Speech, Transcribe, S3.
 - Frontend Language: JavaScript.
 - Frontend Framework: Vue.js
 
