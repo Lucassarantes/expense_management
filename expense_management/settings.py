@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SITE_ID=1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +40,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'expense_management.accounts',
+    "django.contrib.sites",
+    "django_google_sso",
+    'sslserver',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "redirect_uri": "http://127.0.0.1:8000/admin/google/login/callback/",
+        "access_type": "online",
+    }
+}
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,9 +136,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_SSO_CLIENT_ID = "880185488031-c42g7t8nnusi5eakosps95md9lkamjid.apps.googleusercontent.com"
+GOOGLE_SSO_PROJECT_ID = "expenses-management-auth"
+GOOGLE_SSO_CLIENT_SECRET = "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"
+
+GOOGLE_SSO_REDIRECT_URI = 'http://example.com/google_sso/callback/'
+
+GOOGLE_SSO_ALLOWABLE_DOMAINS = ["http://127.0.0.1:8000"]
+
+
