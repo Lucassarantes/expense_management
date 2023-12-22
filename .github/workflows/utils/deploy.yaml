@@ -23,3 +23,8 @@
       args:
         chdir: /var/www/html/expense_management
 
+    - name: Restart Gunicorn
+      ansible.builtin.systemd:
+        name: gunicorn
+        state: restarted
+        daemon_reload: yes
