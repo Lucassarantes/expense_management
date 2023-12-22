@@ -26,5 +26,5 @@ jobs:
         run: |
           sudo apt update
           sudo apt install ansible -y
-          ansible-playbook -i ${{ secrets.HOST }}, -u ${{ secrets.USERNAME }} --private-key=~/.ssh/id_rsa utils/deploy.yml
+          ansible-playbook -i ${{ secrets.HOST }}, -u ${{ secrets.USERNAME }} --private-key=~/.ssh/id_rsa utils/deploy.yaml
 
