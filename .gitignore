@@ -142,4 +142,8 @@ pip-selfcheck.json
 # Ignore all local history of files
 .history
 
+cert.crt
+cert.key
+client_secret_880185488031-c42g7t8nnusi5eakosps95md9lkamjid.apps.googleusercontent.com.json
+
 # End of https://www.gitignore.io/api/django,virtualenv,visualstudiocode
