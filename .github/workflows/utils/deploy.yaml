@@ -1,0 +1,24 @@
+---
+- name: Update and Migrate Expense Management App
+  hosts: linux_servers
+  become: yes
+
+  tasks:
+    - name: Switch to the application directory
+      ansible.builtin.shell:
+        cmd: cd /var/www/html/expense_management && git pull origin main
+
+    - name: Install required Python packages
+      ansible.builtin.shell:
+        cmd: pip install -r requirements.txt
+      args:
+        chdir: /var/www/html/expense_management
+
+    - name: Apply Django migrations
+      ansible.builtin.shell:
+        cmd: |
+          python manage.py makemigrations
+          python manage.py migrate
+      args:
+        chdir: /var/www/html/expense_management
+
