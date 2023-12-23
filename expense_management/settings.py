@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import json
+
+with open('google.json') as f:
+    google_json = json.load(f)
+    
+google_credentials = google_json.get("web", {})
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +36,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+SITE_ID=1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +47,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'expense_management.accounts',
     'expense_management.expenses',
+    "django.contrib.sites",
+    "django_google_sso",
+    'sslserver',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email"
+        ],
+        "AUTH_PARAMS": {"access_type": "online"},
+        "redirect_uri": "http://127.0.0.1:8000/admin/google/login/callback/",
+        "access_type": "online",
+    }
+}
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,9 +143,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+GOOGLE_SSO_CLIENT_ID = google_credentials.get("client_id")
+GOOGLE_SSO_PROJECT_ID = google_credentials.get("project_id")
+GOOGLE_SSO_CLIENT_SECRET = google_credentials.get("client_secret")
+
+GOOGLE_SSO_REDIRECT_URI = google_credentials.get('redirect_uris')
+
+GOOGLE_SSO_ALLOWABLE_DOMAINS = ["http://127.0.0.1:8000"]
+
+
