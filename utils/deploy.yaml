@@ -17,7 +17,6 @@
     - name: Apply Django migrations
       ansible.builtin.shell:
         cmd: |
-          python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic
       args:
