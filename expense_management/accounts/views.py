@@ -20,6 +20,7 @@ class CustomLoginAPIView(APIView):
         if user and user.check_password(password):
             # Authentication successful
             login(request, user)
+            print(user)
             logging.info(f"User {email} logged in successfully.")
             return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
         else:
