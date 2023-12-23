@@ -5,11 +5,6 @@ try:
 except ImportError:
     pass
 
-with open('google.json') as f:
-    google_json = json.load(f)
-    
-google_credentials = google_json.get("web", {})
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
