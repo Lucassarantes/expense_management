@@ -32,9 +32,12 @@ SECRET_KEY = 'django-insecure-83!e=ys6$y5d_yje)w&2=vq%0wo7d2u8iy$zx2enrnsen2u-^$
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+
+SITE_ID=1
 
 SITE_ID=1
 
@@ -96,7 +99,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'expense_management.wsgi.application'
 
-STATIC_ROOT = 'static'
+STATIC_ROOT = 'static'STATIC_ROOT = 'static'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
