@@ -17,8 +17,8 @@
     - name: Apply Django migrations
       ansible.builtin.shell:
         cmd: |
-          python manage.py migrate
-          python manage.py collectstatic
+          python manage.py migrate --noinput
+          python manage.py collectstatic --noinput
       args:
         chdir: /var/www/html/app
 
