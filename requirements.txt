@@ -1,4 +1,5 @@
 Django==5.0
-social-auth-app-django==4.0.0
-google-auth==2.2.1
-google-auth-oauthlib==0.4.6
+django-google-sso==5.0.0
+google-auth==2.25.2
+google-auth-httplib2==0.2.0
+google-auth-oauthlib==1.2.0
