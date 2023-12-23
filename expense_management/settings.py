@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'expense_management.accounts',
+    'expense_management.expenses',
 ]
 
 MIDDLEWARE = [
