@@ -1,9 +1,5 @@
 from pathlib import Path
 import json
-try:
-    from local_settings import *
-except ImportError:
-    pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,3 +117,8 @@ GOOGLE_SSO_CLIENT_SECRET = web.get("client_secret")
 GOOGLE_SSO_REDIRECT_URI = web.get('redirect_uris')
 
 GOOGLE_SSO_ALLOWABLE_DOMAINS = ["https://pockets.beakcloud.com"]
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
