@@ -118,8 +118,6 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-print(local_settings)
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GOOGLE_SSO_CLIENT_ID = web.get("client_id")
 GOOGLE_SSO_PROJECT_ID = web.get("project_id")
