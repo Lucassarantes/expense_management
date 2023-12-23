@@ -6,22 +6,21 @@
   tasks:
     - name: Switch to the application directory
       ansible.builtin.shell:
-        cmd: cd /var/www/html/expense_management && git pull origin main
+        cmd: cd /var/www/html/app && git pull origin main
 
     - name: Install required Python packages
       ansible.builtin.shell:
         cmd: pip install -r requirements.txt
       args:
-        chdir: /var/www/html/expense_management
+        chdir: /var/www/html/app
 
     - name: Apply Django migrations
       ansible.builtin.shell:
         cmd: |
-          python manage.py makemigrations
           python manage.py migrate
           python manage.py collectstatic
       args:
-        chdir: /var/www/html/expense_management
+        chdir: /var/www/html/app
 
     - name: Restart Gunicorn
       ansible.builtin.systemd:
