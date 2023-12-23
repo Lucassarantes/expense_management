@@ -1,0 +1,30 @@
+name: Deploy pockets.beakcloud.com
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+      - name: Run Ansible playbook
+        env:
+          ANSIBLE_HOST_KEY_CHECKING: False
+        run: |
+          sudo apt update
+          sudo apt install ansible -y
+          ansible-playbook -i  utils/inventory.ini -u ${{ secrets.USERNAME }} --private-key=~/.ssh/id_rsa utils/deploy.yaml
+
