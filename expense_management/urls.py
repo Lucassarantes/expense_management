@@ -16,16 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(
         "google_sso/", include("django_google_sso.urls", namespace="django_google_sso")
-    ),
-    # This is comming from allauth packages.
-    #path("", include("googleauthentication.urls")),
-    # This gives all paths realted to our user accounts like resetting password, signing out.
-    #path("accounts/", include("allauth.urls")),
-    # This is for our accounts app
-    #path("", include("expense_management.accounts.urls"))
+    )
 ]
