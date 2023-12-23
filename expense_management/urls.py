@@ -15,8 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(
+        "google_sso/", include("django_google_sso.urls", namespace="django_google_sso")
+    ),
+    # This is comming from allauth packages.
+    #path("", include("googleauthentication.urls")),
+    # This gives all paths realted to our user accounts like resetting password, signing out.
+    #path("accounts/", include("allauth.urls")),
+    # This is for our accounts app
+    #path("", include("expense_management.accounts.urls"))
 ]
