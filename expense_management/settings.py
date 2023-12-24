@@ -1,24 +1,13 @@
 from pathlib import Path
 import json
-try:
-    from local_settings import *
-except ImportError:
-    pass
-
-with open('google.json') as f:
-    google_json = json.load(f)
-    
-google_credentials = google_json.get("web", {})
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = 'django-insecure-83!e=ys6$y5d_yje)w&2=vq%0wo7d2u8iy$zx2enrnsen2u-^$'
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 SITE_ID=1
 
@@ -117,13 +106,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-print(local_settings)
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-GOOGLE_SSO_CLIENT_ID = web.get("client_id")
-GOOGLE_SSO_PROJECT_ID = web.get("project_id")
-GOOGLE_SSO_CLIENT_SECRET = web.get("client_secret")
 
-GOOGLE_SSO_REDIRECT_URI = web.get('redirect_uris')
-
-GOOGLE_SSO_ALLOWABLE_DOMAINS = ["https://pockets.beakcloud.com"]
+try:
+    from expense_management.local_settings import *
+except ImportError:
+    pass
