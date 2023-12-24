@@ -1,5 +1,11 @@
 from pathlib import Path
 import json
+try:
+    from local_settings import *
+except ImportError:
+    pass
+    
+google_credentials = google_json.get("web", {})
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,6 +28,11 @@ INSTALLED_APPS = [
     'expense_management.expenses',
     "django.contrib.sites",
     "django_google_sso",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -42,10 +53,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'expense_management.urls'
@@ -61,9 +74,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'expense_management.wsgi.application'
