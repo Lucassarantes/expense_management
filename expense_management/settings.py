@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'expense_management.expenses',
     "django.contrib.sites",
     "django_google_sso",
-    'sslserver',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
