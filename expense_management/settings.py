@@ -1,11 +1,5 @@
 from pathlib import Path
 import json
-try:
-    from local_settings import *
-except ImportError:
-    pass
-    
-google_credentials = google_json.get("web", {})
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,28 +18,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'expense_management.accounts',
+    #'expense_management.accounts',
     'expense_management.expenses',
     "django.contrib.sites",
-    "django_google_sso",
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
 ]
 
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "SCOPE": [
-            "profile",
-            "email"
-        ],
-        "AUTH_PARAMS": {"access_type": "online"},
-        "redirect_uri": "http://127.0.0.1:8000/admin/google/login/callback/",
-        "access_type": "online",
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     "google": {
+#         "SCOPE": [
+#             "profile",
+#             "email"
+#         ],
+#         "AUTH_PARAMS": {"access_type": "online"},
+#         "redirect_uri": "http://127.0.0.1:8000/admin/google/login/callback/",
+#         "access_type": "online",
+#     }
+# }
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 
@@ -58,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
+    #"allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'expense_management.urls'
@@ -82,7 +75,7 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    #'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'expense_management.wsgi.application'
@@ -111,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'accounts.User'
+#AUTH_USER_MODEL = 'accounts.User'
 
 LANGUAGE_CODE = 'en-us'
 
