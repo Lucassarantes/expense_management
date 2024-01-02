@@ -145,7 +145,6 @@ pip-selfcheck.json
 
 cert.crt
 cert.key
-google.json
 .staticfiles
 /staticfiles/
 # End of https://www.gitignore.io/api/django,virtualenv,visualstudiocode

@@ -1,5 +1,6 @@
 from django.db import models
-from expense_management.accounts.models import User
+from django.contrib.auth.models import User
+#from expense_management.accounts.models import User
 
 TAG_COLOR_CHOICES = (
     ('B', 'Blue'),
@@ -25,7 +26,7 @@ class Expense(models.Model):
     description = models.TextField(blank=True)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     registered_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.objects.get(username='admin').id)
     audio_url = models.URLField(blank=True)
     
     def __str__(self):
